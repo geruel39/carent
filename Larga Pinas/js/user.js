@@ -446,13 +446,115 @@ document.getElementById('confirm_rent').onclick = e=>{
 
     })
     .catch(error => console.error('Error:', error));
-
-
-
-
-
-
 }
+
+
+//BLOG
+function showBlogDetail(id) {
+    document.getElementById('blogGrid')?.classList.add('hidden');
+    document.getElementById(id)?.classList.remove('hidden');
+
+    const detailSections = document.querySelectorAll("#blogDriving, #blogMaintenance, #blogRenting, #blogCuisine, #blogEssentials, #blogTravel");
+    detailSections.forEach(section => section.classList.add('hidden'));
+
+    document.getElementById(id)?.classList.remove('hidden');
+
+    if (id === 'blogTravel') {
+        const blogDescriptions = [
+            `Escape to <strong class="text-blue-600">Tagaytay</strong>, known for its cool climate and stunning views of Taal Lake and Volcano.
+            Enjoy top attractions like People's Park in the Sky and Picnic Grove, or indulge in local delights like bulalo.
+            With scenic landscapes and fun activities, Tagaytay is perfect for relaxation and adventure.`,
+
+            `<strong class="text-blue-600">La Union</strong> is the surfing capital of Northern Luzon, perfect for beach lovers and thrill seekers.
+            Explore the waves at San Juan beach, visit grape farms, or relax with great seaside food and sunsets.`,
+
+            `Known as the <strong class="text-blue-600">Summer Capital of the Philippines</strong>, Baguio offers cool weather, pine trees, and culture.
+            Don't miss Burnham Park, Session Road, and the Strawberry Farm in nearby La Trinidad.`
+        ];
+
+        const blogTravel = document.getElementById('blogTravel');
+        const description = blogTravel.querySelector("p");
+        const imageContainers = blogTravel.querySelectorAll(".grid > div");
+
+        imageContainers.forEach((container, index) => {
+            const img = container.querySelector("img");
+            img.style.cursor = "pointer";
+
+            
+            const newImg = img.cloneNode(true);
+            container.replaceChild(newImg, img);
+        });
+
+       
+        blogTravel.querySelectorAll(".grid > div").forEach((container, index) => {
+            const img = container.querySelector("img");
+
+            img.addEventListener("click", () => {
+                
+                blogTravel.querySelectorAll("img").forEach(img => {
+                    img.classList.remove("ring-4", "ring-blue-400");
+                });
+
+                
+                img.classList.add("ring-4", "ring-blue-400");
+
+                
+                description.innerHTML = blogDescriptions[index];
+            });
+        });
+    }
+}
+
+const essentials = [
+    {
+        title: "CAR EMERGENCY KIT",
+        description: "Always be prepared for unexpected situations. Pack an emergency kit that includes a spare tire, jack, jumper cables, flashlight, basic first-aid supplies, and a multi-tool. These items can be lifesavers in case of a breakdown or minor accidents."
+    },
+    {
+        title: "SNACKS & WATER",
+        description: "Stay hydrated and energized. Pack water bottles and non-perishable snacks like granola bars or trail mix for long drives."
+    },
+    {
+        title: "POWER BANK & CHARGERS",
+        description: "Keep your devices charged for navigation, communication, and emergencies. Always bring your phone cable and a power bank."
+    },
+    {
+        title: "CLOTHES & BLANKET",
+        description: "Extra clothes for unexpected weather and a blanket for warmth or naps during rest stops."
+    },
+    {
+        title: "ID & TRAVEL DOCUMENTS",
+        description: "Bring valid IDs, licenses, and travel documents in a waterproof pouch, especially when crossing provincial borders."
+    }
+];
+
+function selectEssential(index) {
+    document.getElementById("essentialTitle").textContent = essentials[index].title;
+    document.getElementById("essentialDescription").textContent = essentials[index].description;
+
+    for (let i = 0; i < essentials.length; i++) {
+        const box = document.getElementById(`essential${i}`);
+        box.classList.remove("border-blue-500", "border-4");
+        box.classList.add("border");
+    }
+ 
+    const selected = document.getElementById(`essential${index}`);
+    selected.classList.remove("border");
+    selected.classList.add("border-blue-500", "border-4");
+}
+
+
+
+function goBack() {
+    document.getElementById('blogGrid')?.classList.remove('hidden');
+
+    const detailSections = document.querySelectorAll("#blogDriving, #blogMaintenance, #blogRenting, #blogCuisine, #blogEssentials, #blogTravel");
+    detailSections.forEach(section => section.classList.add('hidden'));
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+
 
 
 
