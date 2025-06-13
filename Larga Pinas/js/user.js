@@ -492,11 +492,11 @@ function showBlogDetail(id) {
             img.addEventListener("click", () => {
                 
                 blogTravel.querySelectorAll("img").forEach(img => {
-                    img.classList.remove("ring-4", "ring-blue-400");
+                    img.classList.remove("ring-4", "ring-blue-400", "scale-110");
                 });
 
                 
-                img.classList.add("ring-4", "ring-blue-400");
+                img.classList.add("ring-4", "ring-blue-400", "scale-110");
 
                 
                 description.innerHTML = blogDescriptions[index];

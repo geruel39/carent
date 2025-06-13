@@ -554,9 +554,9 @@
             </div>
 
 
-            <div class="border-[3px] border-blue-300 bg-gray-500 p-4 rounded-lg shadow-inner">
-                <h3 id="essentialTitle" class="font-bold text-gray-800 mb-1 uppercase tracking-wide text-xl">CAR EMERGENCY KIT</h3>
-                    <p id="essentialDescription" class="text-gray-800 text-xl leading-relaxed">
+            <div class="border-[3px] border-blue-300 bg-gray-300 p-4 rounded-lg shadow-inner">
+                <h3 id="essentialTitle" class="font-bold text-white-800 mb-1 uppercase tracking-wide text-xl">CAR EMERGENCY KIT</h3>
+                    <p id="essentialDescription" class="text-white-800 text-xl leading-relaxed">
                         Always be prepared for unexpected situations. Pack an emergency kit that includes a spare tire, jack, jumper cables, flashlight, basic first-aid supplies, and a multi-tool.
                     </p>
             </div>
@@ -575,24 +575,26 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
-                    <img src="images/blog/01 tagaytay.jpg" class="w-full h-40 object-cover rounded" />
+                    <img src="images/blog/01 tagaytay.jpg" class="w-full h-40 object-cover rounded transform transition duration-200 ease-in-out" />
                     <h3 class="text-lg font-semibold mt-2">Tagaytay City</h3>
                 </div>
                 <div>
-                    <img src="images/blog/02 la uinon.jpg" class="w-full h-40 object-cover rounded" />
+                    <img src="images/blog/02 la uinon.jpg" class="w-full h-40 object-cover rounded transform transition duration-200 ease-in-out" />
                     <h3 class="text-lg font-semibold mt-2">La Union</h3>
                 </div>
                 <div>
-                    <img src="images/blog/03 baguio.jpg" class="w-full h-40 object-cover rounded" />
+                    <img src="images/blog/03 baguio.jpg" class="w-full h-40 object-cover rounded transform transition duration-200 ease-in-out" />
                     <h3 class="text-lg font-semibold mt-2">Baguio City</h3>
                 </div>
             </div>
 
-            <p class="mt-4 text-gray-700">
-                Escape to <strong class="text-blue-600">Tagaytay</strong>, known for its cool climate and stunning views of Taal Lake and Volcano.
-                Enjoy top attractions like People's Park in the Sky and Picnic Grove, or indulge in local delights like bulalo.
-                With scenic landscapes and fun activities, Tagaytay is perfect for relaxation and adventure.
-            </p>
+            <div class="border-[3px] mt-5 border-blue-300 bg-gray-300 p-4 rounded-lg shadow-inner">
+                <p class="mt-0 text-gray-1000 text-xl">
+                    Escape to <strong class="text-blue-600 text-xl">Tagaytay</strong>, known for its cool climate and stunning views of Taal Lake and Volcano.
+                    Enjoy top attractions like People's Park in the Sky and Picnic Grove, or indulge in local delights like bulalo.
+                    With scenic landscapes and fun activities, Tagaytay is perfect for relaxation and adventure.
+                </p>
+            </div>
 
             <div class="text-center">
                 <button onclick="goBack()" class="mt-6 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded">
