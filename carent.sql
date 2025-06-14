@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2025 at 06:07 AM
+-- Generation Time: Jun 14, 2025 at 06:34 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -24,31 +24,21 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `accounts`
+-- Table structure for table `account`
 --
 
-CREATE TABLE `accounts` (
-  `account_id` int(11) NOT NULL,
+CREATE TABLE `account` (
+  `id` varchar(50) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `firstname` varchar(50) NOT NULL,
-  `lastname` varchar(50) NOT NULL,
-  `gender` varchar(20) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `phone` bigint(11) NOT NULL,
-  `image` varchar(255) DEFAULT 'accounts.svg',
-  `role` varchar(50) NOT NULL DEFAULT 'user'
+  `password` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `accounts`
+-- Dumping data for table `account`
 --
 
-INSERT INTO `accounts` (`account_id`, `username`, `password`, `firstname`, `lastname`, `gender`, `email`, `phone`, `image`, `role`) VALUES
-(1, 'largadmin39', 'largadmin93', 'admin', 'admin', '', 'admin@gmail.com', 99999999999, NULL, 'admin'),
-(3, 'geruel39', '123123', 'Geruel', 'Alcaraz', 'Male', 'geruel@gmail.com', 9687148824, 'accounts.svg', 'user'),
-(4, 'walid', 'walid', 'walid', 'dimao', 'Female', 'walid@gmal.com', 516586551, 'accounts.svg', 'user'),
-(5, 'geruel929', '123123', 'Geruel', 'Alcaraz', 'Male', 'geruelalcaraz@gmail.com', 9685415555, 'accounts.svg', 'user');
+INSERT INTO `account` (`id`, `username`, `password`) VALUES
+('largapinas159632145698753', 'largapinas', 'largapinas12');
 
 -- --------------------------------------------------------
 
@@ -67,7 +57,6 @@ CREATE TABLE `cars` (
   `doors` int(2) NOT NULL,
   `color` varchar(50) NOT NULL,
   `price` decimal(11,2) NOT NULL,
-  `quantity` int(11) NOT NULL,
   `image` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -75,9 +64,12 @@ CREATE TABLE `cars` (
 -- Dumping data for table `cars`
 --
 
-INSERT INTO `cars` (`car_id`, `type`, `brand`, `model`, `transmission`, `fuel`, `passenger`, `doors`, `color`, `price`, `quantity`, `image`) VALUES
-(1, 'Sedan', 'BMW', 'M5', 'Automatic', 'Diesel', 6, 4, 'Gray', 200.00, 5, 'BMW M5.png'),
-(2, 'Sedan', 'Honda', 'City', 'Manual', 'Unleaded', 5, 4, 'White', 200.00, 5, 'Honda City.png');
+INSERT INTO `cars` (`car_id`, `type`, `brand`, `model`, `transmission`, `fuel`, `passenger`, `doors`, `color`, `price`, `image`) VALUES
+(1, 'Sedan', 'BMW', 'M5', 'Automatic', 'Diesel', 6, 4, 'Gray', 200.00, 'BMW M5.png'),
+(2, 'Sedan', 'Honda', 'City', 'Manual', 'Unleaded', 5, 4, 'White', 200.00, 'Honda City.png'),
+(4, 'AUV', 'Yeah', 'Sad', 'sad', 'sad', 5, 5, 'sad', 150.00, 'Cadillac CT6 V.png'),
+(5, 'Sedan', 'Nissan', 'Almera', 'Manual', 'Diesel', 5, 4, 'Black', 180.00, 'nissan almera.png'),
+(9, 'Sedan', 'Roll Royce', 'Phantom', 'Manual', 'Diesel', 5, 4, 'Black', 250.00, 'Rolls Royce Phantom.png');
 
 -- --------------------------------------------------------
 
@@ -87,15 +79,15 @@ INSERT INTO `cars` (`car_id`, `type`, `brand`, `model`, `transmission`, `fuel`, 
 
 CREATE TABLE `rentals` (
   `rent_id` int(11) NOT NULL,
-  `customer` varchar(100) NOT NULL,
+  `fullname` varchar(100) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `phone` int(11) NOT NULL,
   `car` int(11) NOT NULL,
-  `pdlocation` varchar(50) NOT NULL,
-  `start` datetime NOT NULL,
+  `pickup` datetime NOT NULL,
   `return` datetime NOT NULL,
-  `driver` varchar(50) NOT NULL,
   `extras` varchar(50) NOT NULL,
   `total` int(11) NOT NULL,
-  `payment` varchar(255) NOT NULL DEFAULT 'Cash',
+  `proof` varchar(255) NOT NULL,
   `status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -103,22 +95,22 @@ CREATE TABLE `rentals` (
 -- Dumping data for table `rentals`
 --
 
-INSERT INTO `rentals` (`rent_id`, `customer`, `car`, `pdlocation`, `start`, `return`, `driver`, `extras`, `total`, `payment`, `status`) VALUES
-(1, 'Geruel', 2, 'On Site', '2025-06-09 15:53:00', '2025-06-10 15:53:00', '', 'extra gas - roof box', 6300, 'Cash', 'Confirmed'),
-(4, 'Walid Dimao', 2, 'On Site', '2025-06-09 15:53:00', '2025-06-10 15:53:00', '', 'No extra', 4800, 'Cash', 'Confirmed'),
-(6, 'Geruel Alcaraz', 2, 'Cvsu Imus', '2025-06-11 08:20:00', '2025-06-14 08:20:00', 'No', 'extra gas - roof box - child seat', 16200, 'Cash', 'Confirmed'),
-(7, 'Geruel Alcaraz', 1, 'Sa may kanto', '2025-06-11 09:16:00', '2025-06-12 09:16:00', 'Yes', 'roof box', 8900, 'proof_20250610_031650_6847878286b407.19276960.jpg', 'Request');
+INSERT INTO `rentals` (`rent_id`, `fullname`, `email`, `phone`, `car`, `pickup`, `return`, `extras`, `total`, `proof`, `status`) VALUES
+(8, 'asdsa', 'asdsad', 155, 1, '2025-07-01 00:00:00', '2025-07-01 09:00:00', 'No extra', 2700, 'proof_20250614_052116_684ceaac858502.18722430.png', 'Request'),
+(9, 'Geruel Alcaraz', 'geruel@gmail.com', 2147483647, 1, '2025-09-01 06:00:00', '2025-09-05 12:00:00', 'No extra', 30600, 'proof_20250614_053133_684ced15707306.12010788.png', 'Confirmed'),
+(10, 'Robbie Noob', 'robbie@gmail.com', 968955665, 1, '2025-06-17 00:00:00', '2025-06-19 09:00:00', 'extra gas - roof box - child seat', 18900, 'proof_20250614_053341_684ced95ec4235.77515942.png', 'Rejected'),
+(11, 'yeah', 'yeah', 1515, 1, '2025-07-01 00:00:00', '2025-07-04 00:00:00', 'No extra', 21600, 'proof_20250614_053438_684cedcea145b8.74211026.png', 'Request'),
+(12, 'asdsad', 'asdsad', 6556156, 1, '2025-07-05 00:00:00', '2025-07-07 00:00:00', 'extra gas - child seat', 15700, 'proof_20250614_053528_684cee009d8a11.28775398.png', 'Request');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `accounts`
+-- Indexes for table `account`
 --
-ALTER TABLE `accounts`
-  ADD PRIMARY KEY (`account_id`),
-  ADD UNIQUE KEY `username` (`username`);
+ALTER TABLE `account`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `cars`
@@ -137,22 +129,16 @@ ALTER TABLE `rentals`
 --
 
 --
--- AUTO_INCREMENT for table `accounts`
---
-ALTER TABLE `accounts`
-  MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
 -- AUTO_INCREMENT for table `cars`
 --
 ALTER TABLE `cars`
-  MODIFY `car_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `car_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `rentals`
 --
 ALTER TABLE `rentals`
-  MODIFY `rent_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `rent_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
