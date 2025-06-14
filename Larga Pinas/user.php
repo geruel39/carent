@@ -96,15 +96,15 @@
         <div class="flex flex-col md:flex-row mt-20 space-x-20 items-center">
 
             <div class="w-56 h-56 flex flex-col justify-between relative">
-                <img src="images/extras/gas.png" class="object-cover">
+                <img src="images/extras/gas.svg" class="object-cover">
                 <p class="absolute -bottom-10 w-full text-center font-semibold">Extra Gas</p>
             </div>
             <div class="w-56 h-56 flex flex-col justify-between relative">
-                <img src="images/extras/roof box.png" class="object-cover">
+                <img src="images/extras/roofbox.svg" class="object-cover">
                 <p class="absolute -bottom-10 w-full text-center font-semibold">Roof Box</p>
             </div>
             <div class="w-56 h-56 flex flex-col justify-between relative">
-                <img src="images/extras/child sit.png" class="object-cover">
+                <img src="images/extras/childseat.svg" class="object-cover">
                 <p class="absolute -bottom-10 w-full text-center font-semibold">Child Seat</p>
             </div>
 
