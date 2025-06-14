@@ -149,7 +149,6 @@ document.getElementById('add_car_btn').onclick = ()=>{
         doors: document.getElementById('doors').value,
         color: document.getElementById('color').value,
         price: document.getElementById('price').value,
-        quantity: document.getElementById('quantity').value,
         image: document.getElementById('image').value
     }
     for(let i in info){
@@ -173,7 +172,6 @@ document.getElementById('add_car_btn').onclick = ()=>{
     formData.append('doors', document.getElementById('doors').value);
     formData.append('color', document.getElementById('color').value);
     formData.append('price', document.getElementById('price').value);
-    formData.append('quantity', document.getElementById('quantity').value);
 
     const imageInput = document.getElementById('image');
     if (imageInput.files.length > 0) {
@@ -187,9 +185,9 @@ document.getElementById('add_car_btn').onclick = ()=>{
         method: 'POST',
         body: formData
     })
-    .then(response => response.text())
+    .then(response => response.json())
     .then(result => {
-        alert(result);
+        alert(result.message);
 
         addVehicleModal.classList.add('hidden');
         document.getElementById('type').value = "";
@@ -204,7 +202,7 @@ document.getElementById('add_car_btn').onclick = ()=>{
         document.getElementById('quantity').value = "";
         document.getElementById('image').value = "";
 
-
+        displayCars();
 
     })
     .catch(error => {
@@ -280,23 +278,27 @@ function displayRentRequest() {
             data.request.forEach(r=>{
 
                 const newRow = table.insertRow();
-                newRow.insertCell().textContent = r.customer;
-                newRow.insertCell().textContent = r.carname;
-                newRow.insertCell().textContent = r.pdlocation;
-                newRow.insertCell().textContent = r.start;
+                newRow.insertCell().textContent = r.fullname;
+                const car = newRow.insertCell();
+                car.innerHTML = `
+                    <div>
+                        <p>${r.brand} ${r.model} (${r.type})</p>
+                        <p>Car Id: <span class='text-blue-500'>${r.car_id}</span></p>
+                    </div>
+                `
+                newRow.insertCell().textContent = r.pickup;
                 newRow.insertCell().textContent = r.return;
-                newRow.insertCell().textContent = r.driver;
-                newRow.insertCell().textContent = r.total;
+                newRow.insertCell().textContent = r.extras;
+                newRow.insertCell().textContent = `₱ ${r.total}`;
                 const payment = newRow.insertCell();
-                payment.textContent = r.payment === "Cash" ? r.payment : "Proof";
+                payment.textContent = "Image Proof";
                 payment.classList.add('cursor-pointer');
-                if(r.payment != "Cash"){
-                    payment.classList.add('view_proof');
-                    payment.classList.add('text-blue-500');
-                    payment.classList.add('cursor-pointer');
-                    payment.classList.add('hover:underline');
-                    payment.setAttribute('data-img', r.payment);
-                }
+                payment.classList.add('view_proof');
+                payment.classList.add('text-blue-500');
+                payment.classList.add('cursor-pointer');
+                payment.classList.add('hover:underline');
+                payment.setAttribute('data-img', r.proof);
+                
 
                 const action = newRow.insertCell();
                 action.innerHTML = `
@@ -418,13 +420,20 @@ function displayRentals() {
         }else{
             data.rentals.forEach(r=>{
                 const newRow = table.insertRow();
-                newRow.classList.add('py-1');
+                newRow.classList.add('p-1');
 
-                newRow.insertCell().textContent = r.customer;
-                newRow.insertCell().textContent = r.carname;
-                newRow.insertCell().textContent = r.pdlocation;
-                newRow.insertCell().textContent = r.start;
+                newRow.insertCell().textContent = r.fullname;
+                const car = newRow.insertCell();
+                car.innerHTML = `
+                    <div>
+                        <p>${r.brand} ${r.model} (${r.type})</p>
+                        <p>Car Id: <span class='text-blue-500'>${r.car_id}</span></p>
+                    </div>
+                `
+                newRow.insertCell().textContent = r.pickup;
                 newRow.insertCell().textContent = r.return;
+                newRow.insertCell().textContent = r.extras;
+                newRow.insertCell().textContent = `₱ ${r.total}`;
                 
                 const status = newRow.insertCell();
                 status.classList.add('text-xs');
@@ -432,10 +441,17 @@ function displayRentals() {
                 status.classList.add('text-center');
                 status.classList.add('font-semibold');
 
-                const now = new Date();
-                const startDate = new Date(r.start); // Convert string to Date
+                const action = newRow.insertCell();
+                action.innerHTML = `
+                    <div class='flex items-center justify-center space-x-1 p-2'>
+                        <button class='w-20 p-1 text-sm font-semibold bg-red-500 rounded hover:bg-red-700' data-id='${r.rent_id}'>Cancel</button>
+                    </div>
+                `
 
-                if (startDate < now) {
+                const now = new Date();
+                const startDate = new Date(r.pickup); // Convert string to Date
+
+                if (startDate > now) {
                     status.textContent = "Pending";
                     status.classList.add('bg-blue-500');
                 } else {
@@ -452,57 +468,6 @@ function displayRentals() {
 }
 displayRentals();
 
-//DISPLAT ACCOUNTS
-function displayAccounts() {
-
-    const info = {
-        displayAccounts: true
-    }
-
-    const table = document.getElementById('accounts_table').getElementsByTagName('tbody')[0];
-    table.innerHTML = "";
-
-    fetch('z_admin.php', {method: 'POST',headers: {'Content-Type': 'application/json'},body: JSON.stringify(info)})
-    .then(response => response.json())
-    .then(data =>{
-        console.log( "Accounts: ",data);
-
-        if(!data.result){
-            const newRow = table.insertRow();
-            newRow.insertCell().textContent = "No Result";
-        }else{
-            data.accounts.forEach(a=>{
-
-                const newRow = table.insertRow();
-
-                const image = newRow.insertCell();
-                image.innerHTML = `
-                    <div class='w-16 h-16'>
-                        <image src='images/accounts.svg' class='object-cover'>
-                    </div>
-                `;
-                newRow.insertCell().textContent = a.username;
-                newRow.insertCell().textContent = a.firstname;
-                newRow.insertCell().textContent = a.lastname;
-                newRow.insertCell().textContent = a.gender;
-                newRow.insertCell().textContent = a.email;
-                newRow.insertCell().textContent = a.phone;
-                const action = newRow.insertCell();
-                action.innerHTML = `
-                    <div class='flex items-center space-x-1 p-2'>
-                        <button class='w-16 p-1 text-sm font-semibold bg-blue-500 rounded hover:bg-blue-700' data-id='${a.account_id}'>Edit</button>
-                        <button class='w-16 p-1 text-sm font-semibold bg-red-500 rounded hover:bg-red-700' data-id='${a.account_id}'>Delete</button>
-                    </div>
-                `;
-
-            })
-        }
-
-    })
-    .catch(error => {console.error('Error Message!', error)})
-
-}
-displayAccounts();
 
 function displayCars() {
 
@@ -537,7 +502,6 @@ function displayCars() {
                 newRow.insertCell().textContent = c.doors;
                 newRow.insertCell().textContent = c.color;
                 newRow.insertCell().textContent = c.fuel;
-                newRow.insertCell().textContent = c.quantity;
                 newRow.insertCell().textContent = c.price;
                 const action = newRow.insertCell();
                 action.innerHTML = `
@@ -554,5 +518,4 @@ function displayCars() {
     })
     .catch(error => {console.error('Error Message!', error)})
 }
-
 displayCars();

@@ -23,11 +23,6 @@
         </div>
 
         <div class="tab flex p-2 cursor-pointer rounded transitions duration-200 hover:bg-gray-300">
-            <img src="images/accounts.svg" alt="accounts icon" class="w-6 mx-1">
-            <p>Accounts</p>
-        </div>
-
-        <div class="tab flex p-2 cursor-pointer rounded transitions duration-200 hover:bg-gray-300">
             <img src="images/vehicle.svg" alt="vehicle icon" class="w-6 mx-1">
             <p>Cars</p>
         </div>
@@ -82,10 +77,9 @@
                             <tr>
                                 <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Customer Name</th>
                                 <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Car Rented</th>
-                                <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Pick-up & Drop-off Location</th>
-                                <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Start Time</th>
-                                <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Return Time</th>
-                                <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Driver</th>
+                                <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Pick-up D/T</th>
+                                <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Return D/T</th>
+                                <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Extras</th>
                                 <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Total Cost</th>
                                 <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Payment Proof</th>
                                 <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Action</th>
@@ -116,10 +110,12 @@
                             <tr>
                                 <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Customer Name</th>
                                 <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Car Rented</th>
-                                <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Pick-up & Drop-off Location</th>
-                                <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Start Time</th>
-                                <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Return Time</th>
+                                <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Pick-up D/T</th>
+                                <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Return D/T</th>
+                                <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Extras</th>
+                                <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Total</th>
                                 <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Status</th>
+                                <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Actions</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-100">
@@ -211,44 +207,6 @@
 
         </div>
 
-        <!-- Accounts -->
-        <div class="page hidden">
-
-            <h1 class="text-lg font-bold ml-5">Customer Accounts</h1>
-
-            <div class="w-full overflow-auto rounded-lg shadow">
-
-                <table id="accounts_table" class="w-full">
-                    <thead class="bg-gray-50 border-b-2 border-gray-200">
-                        <tr>
-                            <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Photo</th>
-                            <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Username</th>
-                            <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">First name</th>
-                            <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Last name</th>
-                            <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Gender</th>
-                            <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Email Address</th>
-                            <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Phone Number</th>
-                            <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-100">
-                        <tr>
-                            <td class="p-3 text-sm whitespace-nowrap">ID Number</td>
-                            <td class="p-3 text-sm whitespace-nowrap">Username</td>
-                            <td class="p-3 text-sm whitespace-nowrap">First name</td>
-                            <td class="p-3 text-sm whitespace-nowrap">Last name</td>
-                            <td class="p-3 text-sm whitespace-nowrap">Gender</td>
-                            <td class="p-3 text-sm whitespace-nowrap">Email Address</td>
-                            <td class="p-3 text-sm whitespace-nowrap">Phone Number</td>
-                            <td class="p-3 text-sm whitespace-nowrap">Actions</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-            </div>
-
-        </div>
-
         <!-- Cars -->
         <div class="page hidden">   
 
@@ -257,14 +215,6 @@
                 <h1 class="text-lg font-bold ml-5">Cars</h1>
 
                 <div class="flex justify-end my-1 space-x-1">
-                    <select id="" class="p-1 rounded cursor-pointer">
-                        <option value="">All Type</option>
-                        <option value="Sedan">Sedan</option>
-                        <option value="SUV">SUV</option>
-                        <option value="AUV">AUV</option>
-                        <option value="MPV">MPV</option>
-                        <option value="VANS">VANS</option>
-                    </select>
                     <button id="open_add_vehicle" class="text-sm text-white font-bold p-2 rounded bg-blue-400 opacity-90 hover:opacity-100">+ ADD CAR</button>
                 </div>
             </div>
@@ -284,7 +234,6 @@
                             <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Doors</th>
                             <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Color</th>
                             <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Fuel</th>
-                            <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Quantity</th>
                             <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Price</th>
                             <th class="w-36 p-3 text-sm font-semibold tracking-wide text-left whitespace-nowrap">Actions</th>
                         </tr>
@@ -329,7 +278,6 @@
                     <input type="number" placeholder="Doors" class="p-1" id="doors">
                     <input type="text" placeholder="Color" class="p-1" id="color">
                     <input type="number" placeholder="Price" class="p-1" id="price">
-                    <input type="number" placeholder="Quantity" class="p-1" id="quantity">
                     <input type="file" class="p-1" id="image">
 
                 </div>

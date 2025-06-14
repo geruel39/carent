@@ -35,15 +35,6 @@
             <p class="w-16 md:w-24 text-center p-1 hover:text-blue-700 tab">Extras</p>
             <p class="w-16 md:w-24 text-center p-1 hover:text-blue-700 tab">Blog</p>
         </div>
-        <!-- Header Profile -->
-        <div id="header_profile" class="flex items-center space-x-2 text-xs md:text-sm"></div>
-        <!-- Menu  -->
-         <div id="menu" class="w-32 flex flex-col justify-center space-y-2 absolute top-12 right-1 bg-gray-300 p-5 rounded shadow cursor-pointer hidden">
-            <a href="#" class="hover:underline">Profile</a>
-            <a href="#" class="hover:underline">Rents</a>
-            <p id="logout" class="hover:underline">Logout</p>
-         </div>
-
     </div>
 
     <!-- Cars -->
@@ -93,128 +84,6 @@
             <div id="vans_car_list" class="w-full flex flex-wrap justify-around p-5">
 
             </div>
-        </div>
-
-        <!-- Renting Process -->
-        <div id="online_renting_modal" class="h-screen overflow-auto absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-5 bg-gray-100 border-2 border-black rounded hidden">
-
-            <h1 class="text-xl font-semibold">Renting Process</h1>
-
-            <div id="selected_car_info" class="my-5 p-5">
-                
-            </div>
-
-            <hr>
-
-            <h1 class="text-xl font-semibold">Rent Information:</h1>
-
-            <div class="m-5 p-5 flex flex-col space-y-5">
-
-                <div>
-                    <h1 class="font-semibold">Pick-up & Drop-off Location</h1>
-                    <input id="location" type="text" placeholder="Pick-up & Drop-off Location" class="w-full p-2 rounded">
-                </div>
-                
-                <div>
-                    <h1 class="font-semibold">Start Date & Time</h1>
-                    <input id="start" type="datetime-local" class="w-full p-2 rounded">
-                </div>
-
-                <div>
-                    <h1 class="font-semibold">Return Date & Time</h1>
-                    <input id="returndt" type="datetime-local" class="w-full p-2 rounded">
-                </div>
-
-                <h1 class="font-semibold text-blue-500">Need a Driver?</h1>
-
-                <div class="flex space-x-2 items-center">
-                    <input type="checkbox" id="driver" class="w-8 h-8 cursor-pointer">
-                    <label for="driver" class="flex items-center font-semibold cursor-pointer"><img src="images/driver.svg" class="w-8">Driver</label>
-                    <p class="text-gray-400 text-sm">Make sure to have a driver's license if you choose not to have a driver.</p>
-                </div>
-
-            </div>
-
-            <hr>
-
-            <h1 class="text-xl font-semibold">Extras:</h1>
-
-            <div class="flex justify-between m-5 p-5">
-
-                <div class="flex justify-center items-center w-24">
-                    <input type="checkbox" id="extra_gas" >
-                    <label for="extra_gas" class="cursor-pointer relative px-1 h-28 relative">
-                        <img src="images/extras/gas.png" class="object-fit">
-                        <p class="font-semibold absolute bottom-5">Extra Gas</p>
-                    </label>
-                </div>
-
-                <div class="flex justify-center items-center w-24">
-                    <input type="checkbox" id="roof_box" >
-                    <label for="roof_box" class="cursor-pointer relative px-1 h-28 relative">
-                        <img src="images/extras/roof box.png" class="object-fit">
-                        <p class="font-semibold absolute bottom-5">Roof Box</p>
-                    </label>
-                </div>
-
-                <div class="flex justify-center items-center w-24">
-                    <input type="checkbox" id="child_seat" >
-                    <label for="child_seat" class="cursor-pointer relative px-1 h-28 relative">
-                        <img src="images/extras/child sit.png" class="object-fit">
-                        <p class="font-semibold absolute bottom-5">Child Seat</p>
-                    </label>
-                </div>
-
-            </div>
-
-            <hr>
-
-            <h1 class="w-full p-5 text-xl font-semibold">Total Estimated Cost: <span id="estimated_total" class="text-blue-500"></span></h1>
-
-            <hr>
-
-            <h1 class="text-xl font-semibold">Upload Payment Proof:</h1>
-
-            <h1 class="font-semibold p-2 m-2">Online Payments:</h1>
-
-            <div class="flex p-2 m-2 space-x-2">
-                <p class="w-20 p-1 text-center cursor-pointer border border-blue-500 rounded hover:border-blue-500 payment_tab">GCash</p>
-                <p class="w-20 p-1 text-center cursor-pointer border border-white rounded hover:border-blue-500 payment_tab">Paymaya</p>
-            </div>
-
-            <div class="flex justify-center">
-                <div class="w-56 h-56 payment_page">
-                    <img src="images/gcash.svg">
-                </div>  
-
-                <div class="w-56 h-56 payment_page hidden">
-                    <img src="images/paymaya.svg">
-                </div>
-            </div>
-
-            <hr>
-
-            <h1 class="font-semibold p-2 m-2">Choose to proceed:</h1>
-
-            <div class="flex justify-around p-5 m-5">
-                <div>
-                    <input type="checkbox" id="cash" class="hidden">
-                    <label id="cash_label" for="cash" class="p-2 font-semibold cursor-pointer bg-gray-300 rounded border border-gray-100 hover:border-black">Pay on Cash</label>
-                </div>
-                <div>
-                    <input type="file" id="proof" class="hidden">
-                    <label id="proof_label" for="proof" class="p-2 font-semibold cursor-pointer bg-gray-300 rounded border border-gray-100 hover:border-black">Upload Payment Proof</label>
-                </div>
-            </div>
-
-            <!-- Confirm and Cancel Button -->
-            <div class="flex justify-end space-x-5">
-                <button id="cancel_rent" class="w-24 p-2 text-white font-semibold rounded border border-gray-100 bg-red-500 hover:border-black">Cancel</button>
-                <button id="confirm_rent"  class="w-24 p-2 text-white font-semibold rounded border border-gray-100 bg-blue-500 hover:border-black">Confirm</button>
-            </div>
-
-
-
         </div>
 
     </div>
@@ -554,9 +423,9 @@
             </div>
 
 
-            <div class="border-[3px] border-blue-300 bg-gray-300 p-4 rounded-lg shadow-inner">
-                <h3 id="essentialTitle" class="font-bold text-white-800 mb-1 uppercase tracking-wide text-xl">CAR EMERGENCY KIT</h3>
-                    <p id="essentialDescription" class="text-white-800 text-xl leading-relaxed">
+            <div class="border-[3px] border-blue-300 bg-gray-500 p-4 rounded-lg shadow-inner">
+                <h3 id="essentialTitle" class="font-bold text-gray-800 mb-1 uppercase tracking-wide text-xl">CAR EMERGENCY KIT</h3>
+                    <p id="essentialDescription" class="text-gray-800 text-xl leading-relaxed">
                         Always be prepared for unexpected situations. Pack an emergency kit that includes a spare tire, jack, jumper cables, flashlight, basic first-aid supplies, and a multi-tool.
                     </p>
             </div>
@@ -575,26 +444,24 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
-                    <img src="images/blog/01 tagaytay.jpg" class="w-full h-40 object-cover rounded transform transition duration-200 ease-in-out" />
+                    <img src="images/blog/01 tagaytay.jpg" class="w-full h-40 object-cover rounded" />
                     <h3 class="text-lg font-semibold mt-2">Tagaytay City</h3>
                 </div>
                 <div>
-                    <img src="images/blog/02 la uinon.jpg" class="w-full h-40 object-cover rounded transform transition duration-200 ease-in-out" />
+                    <img src="images/blog/02 la uinon.jpg" class="w-full h-40 object-cover rounded" />
                     <h3 class="text-lg font-semibold mt-2">La Union</h3>
                 </div>
                 <div>
-                    <img src="images/blog/03 baguio.jpg" class="w-full h-40 object-cover rounded transform transition duration-200 ease-in-out" />
+                    <img src="images/blog/03 baguio.jpg" class="w-full h-40 object-cover rounded" />
                     <h3 class="text-lg font-semibold mt-2">Baguio City</h3>
                 </div>
             </div>
 
-            <div class="border-[3px] mt-5 border-blue-300 bg-gray-300 p-4 rounded-lg shadow-inner">
-                <p class="mt-0 text-gray-1000 text-xl">
-                    Escape to <strong class="text-blue-600 text-xl">Tagaytay</strong>, known for its cool climate and stunning views of Taal Lake and Volcano.
-                    Enjoy top attractions like People's Park in the Sky and Picnic Grove, or indulge in local delights like bulalo.
-                    With scenic landscapes and fun activities, Tagaytay is perfect for relaxation and adventure.
-                </p>
-            </div>
+            <p class="mt-4 text-gray-700">
+                Escape to <strong class="text-blue-600">Tagaytay</strong>, known for its cool climate and stunning views of Taal Lake and Volcano.
+                Enjoy top attractions like People's Park in the Sky and Picnic Grove, or indulge in local delights like bulalo.
+                With scenic landscapes and fun activities, Tagaytay is perfect for relaxation and adventure.
+            </p>
 
             <div class="text-center">
                 <button onclick="goBack()" class="mt-6 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded">
@@ -604,6 +471,329 @@
         </div>
     </div>
 
+    <!-- Renting Process -->
+    <div id="renting_process_modal" class="w-full h-screen bg-black bg-opacity-20 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center hidden">
+        <div class="w-96 overflow-auto p-5 bg-gray-100 rounded shadow-lg border border-gray-300">
+
+            <!-- Car Information -->
+            <div id="car_info" class="flex flex-col items-center justify-center">
+
+                <h1 class="font-semibold">You selected</h1>
+
+                <div id="car_info_in" class="w-full"></div>
+
+                <div class="w-full flex space-x-1">
+                    <button id="cancel_rent" class="w-24 mt-5 p-2 text-white bg-gray-500 rounded transition duration-300 hover:bg-gray-700">Cancel</button>
+                    <button id="onetotwo" class="flex-1 mt-5 p-2 text-white bg-blue-500 rounded transition duration-300 hover:bg-blue-700">Continue</button>
+                </div>
+
+                <p class="text-sm mt-3" >1 of 8</p>
+
+            </div>
+
+            <!-- Personal Information -->
+            <div id="per_info" class="hidden">
+
+                <h1 class="font-semibold">Personal & Contact Information</h1>
+                <p class="text-xs text-gray-400 mb-5">Please provide your full name and accurate contact information. This ensures we can reach you for booking confirmation and any important updates regarding your rental.</p>
+
+                <div class="flex flex-col space-y-2">
+                    <input type="text" placeholder="Full name" class="p-2" id="fullname">
+                    <input type="email" placeholder="Email Address" class="p-2" id="email">
+                    <input type="number" placeholder="Phone Number" class="p-2" id="phone">
+                </div>
+
+                <div class="w-full flex space-x-1">
+                    <button id="twotoone" class="w-24 mt-5 p-2 text-white bg-gray-500 rounded transition duration-300 hover:bg-gray-700">Go Back</button>
+                    <button id="twotothree" class="flex-1 mt-5 p-2 text-white bg-blue-500 rounded transition duration-300 hover:bg-blue-700">Next</button>
+                </div>
+
+                <p class="w-full text-center text-sm mt-3" >2 of 8</p>
+
+            </div>
+
+            <!-- Rent Information -->
+            <div id="rent_info" class="hidden">
+
+                <h1 class="font-semibold">Date and Time Information</h1>
+                <p class="text-sm text-gray-400">Reservations must be made at least 24hr in advance for admin approval.</p>
+
+                <p class="font-semibold mt-5">Pick-up Date & Time: </p>
+                <div class="flex space-x-1">
+                    <select id="p-day" class="p-2 font-semibold flex-1 cursor-pointer"></select>
+                    <select id="p-month" class="p-2 font-semibold flex-1 cursor-pointer">
+                        <option value="01">January</option>
+                        <option value="02">February</option>
+                        <option value="03">March</option>
+                        <option value="04">April</option>
+                        <option value="05">May</option>
+                        <option value="06">June</option>
+                        <option value="07">July</option>
+                        <option value="08">August</option>
+                        <option value="09">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </select>
+                    <select id="p-year" class="p-2 font-semibold flex-1 cursor-pointer">
+                        <option value="2025">2025</option>
+                    </select>
+                </div>
+                <div class="flex space-x-1 items-center my-1">
+
+                    <select id="p-time" class="border rounded p-2 font-semibold flex-1">
+                        <option value="00:00">00:00</option>
+                        <option value="01:00">01:00</option>
+                        <option value="02:00">02:00</option>
+                        <option value="03:00">03:00</option>
+                        <option value="04:00">04:00</option>
+                        <option value="05:00">05:00</option>
+                        <option value="06:00">06:00</option>
+                        <option value="07:00">07:00</option>
+                        <option value="08:00">08:00</option>
+                        <option value="09:00">09:00</option>
+                        <option value="10:00">10:00</option>
+                        <option value="11:00">11:00</option>
+                        <option value="12:00">12:00</option>
+                        <option value="13:00">13:00</option>
+                        <option value="14:00">14:00</option>
+                        <option value="15:00">15:00</option>
+                        <option value="16:00">16:00</option>
+                        <option value="17:00">17:00</option>
+                        <option value="18:00">18:00</option>
+                        <option value="19:00">19:00</option>
+                        <option value="20:00">20:00</option>
+                        <option value="21:00">21:00</option>
+                        <option value="22:00">22:00</option>
+                        <option value="23:00">23:00</option>
+                    </select>
+
+                </div>
+
+                <p class="font-semibold mt-5">Return Date & Time: </p>
+                <div class="flex space-x-1">
+                    <select id="r-day" class="p-2 font-semibold flex-1 cursor-pointer">
+                        <option value="" selected disabled>Day</option>
+                    </select>
+                    <select id="r-month" class="p-2 font-semibold flex-1 cursor-pointer">
+                        <option value="01">January</option>
+                        <option value="02">February</option>
+                        <option value="03">March</option>
+                        <option value="04">April</option>
+                        <option value="05">May</option>
+                        <option value="06">June</option>
+                        <option value="07">July</option>
+                        <option value="08">August</option>
+                        <option value="09">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </select>
+                    <select id="r-year" class="p-2 font-semibold flex-1 cursor-pointer">
+                        <option value="2025">2025</option>
+                    </select>
+                </div>
+                <div class="flex space-x-1 items-center my-1">
+
+                    <select id="r-time" class="border rounded p-2 font-semibold flex-1">
+                        <option value="00:00">00:00</option>
+                        <option value="01:00">01:00</option>
+                        <option value="02:00">02:00</option>
+                        <option value="03:00">03:00</option>
+                        <option value="04:00">04:00</option>
+                        <option value="05:00">05:00</option>
+                        <option value="06:00">06:00</option>
+                        <option value="07:00">07:00</option>
+                        <option value="08:00">08:00</option>
+                        <option value="09:00">09:00</option>
+                        <option value="10:00">10:00</option>
+                        <option value="11:00">11:00</option>
+                        <option value="12:00">12:00</option>
+                        <option value="13:00">13:00</option>
+                        <option value="14:00">14:00</option>
+                        <option value="15:00">15:00</option>
+                        <option value="16:00">16:00</option>
+                        <option value="17:00">17:00</option>
+                        <option value="18:00">18:00</option>
+                        <option value="19:00">19:00</option>
+                        <option value="20:00">20:00</option>
+                        <option value="21:00">21:00</option>
+                        <option value="22:00">22:00</option>
+                        <option value="23:00">23:00</option>
+                    </select>
+
+                </div>
+
+                <div class="flex space-x-1">
+                    <button id="threetotwo" class="w-24 mt-5 p-2 text-white bg-gray-500 rounded transition duration-300 hover:bg-gray-700">Go Back</button>
+                    <button id="threetofour" class="flex-1 mt-5 p-2 text-white bg-blue-500 rounded transition duration-300 hover:bg-blue-700">Next</button>
+                </div>
+
+                <p class="w-full text-center text-sm mt-3" >3 of 8</p>
+
+            </div>
+
+            <!-- Add-ons  -->
+            <div id="add_info" class="hidden">
+                
+                <h1 class="font-semibold">Add-ons</h1>
+                <p class="text-sm text-gray-400 mb-5">Click to add</p>
+
+                <div class="flex my-1">
+                    <input type="checkbox" class="hidden" id="driver">
+                    <label for="driver" class="w-full flex justify-center font-semibold p-2 cursor-pointer shadow bg-gray-200 border border-gray-100 rounded hover:border-gray-400">
+                        <img src="images/driver.svg" class="w-6"> Driver - ₱100/hr</label>
+                </div>
+
+                <div class="flex my-1">
+                    <input type="checkbox" class="hidden" id="gas">
+                    <label for="gas" class="w-full flex justify-center font-semibold p-2 cursor-pointer shadow bg-gray-200 border border-gray-100 rounded hover:border-gray-400">
+                        <img src="images/extras/gas.svg" class="w-6"> Extra Gas - ₱1000</label>
+                </div>
+
+                <div class="flex my-1">
+                    <input type="checkbox" class="hidden" id="box">
+                    <label for="box" class="w-full flex justify-center font-semibold p-2 cursor-pointer shadow bg-gray-200 border border-gray-100 rounded hover:border-gray-400">
+                        <img src="images/extras/roofbox.svg" class="w-6"> Roof Box - ₱500</label>
+                </div>
+
+                <div class="flex my-1">
+                    <input type="checkbox" class="hidden" id="seat">
+                    <label for="seat" class="w-full flex justify-center font-semibold p-2 cursor-pointer shadow bg-gray-200 border border-gray-100 rounded hover:border-gray-400">
+                        <img src="images/extras/childseat.svg" class="w-6"> Child Seat - ₱300</label>
+                </div>
+
+                <div class="w-full flex space-x-1">
+                    <button id="fourtothree" class="w-24 mt-5 p-2 text-white bg-gray-500 rounded transition duration-300 hover:bg-gray-700">Go Back</button>
+                    <button id="fourtofive" class="flex-1 mt-5 p-2 text-white bg-blue-500 rounded transition duration-300 hover:bg-blue-700">Skip and Next</button>
+                </div>
+
+                <p class="w-full text-center text-sm mt-3" >4 of 8</p>
+
+            </div>
+
+            <!-- Summary  -->
+            <div id="summary" class="hidden">
+
+                <h1 class="font-semibold mb-5">Summary</h1>
+
+                <div id="summary_content">
+
+                </div>
+
+                <div class="w-full flex space-x-1">
+                    <button id="fivetofour" class="w-24 mt-5 p-2 text-white bg-gray-500 rounded transition duration-300 hover:bg-gray-700">Go Back</button>
+                    <button id="fivetosix" class="flex-1 mt-5 p-2 text-white bg-blue-500 rounded transition duration-300 hover:bg-blue-700">Next</button>
+                </div>
+
+                <p class="w-full text-center text-sm mt-3" >5 of 8</p>
+
+            </div>
+
+            <!-- Terms  -->
+            <div id="terms" class="hidden">
+
+                <h1 class="font-semibold">Terms & Condition</h1>
+                <p class="text-sm text-gray-500 mb-5">Please read the our terms & condition</p>
+
+                <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mt-6">
+                    <div class="flex items-start gap-3">
+                        <input 
+                        type="checkbox" 
+                        id="agreeTerms" 
+                        required 
+                        class="mt-1.5 w-5 h-5 text-blue-600 bg-white border border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
+                        />
+                        <label for="agreeTerms" class="text-sm text-blue-900 leading-5">
+                        I agree to the 
+                        <a href="/terms" target="_blank" class="underline font-medium hover:text-blue-700 transition">
+                            Terms and Conditions
+                        </a>
+                        of this rental service.
+                        </label>
+                    </div>
+                </div>
+
+                <div class="w-full flex space-x-1">
+                    <button id="sixtofive" class="w-24 mt-5 p-2 text-white bg-gray-500 rounded transition duration-300 hover:bg-gray-700">Go Back</button>
+                    <button id="sixtoseven" class="flex-1 mt-5 p-2 text-white bg-blue-500 rounded transition duration-300 hover:bg-blue-700">Next</button>
+                </div>
+
+                <p class="w-full text-center text-sm mt-3" >6 of 8</p>
+
+
+            
+            </div>
+
+            <!-- Payment -->
+            <div id="payment_info" class="hidden">
+
+                <h1 class="font-semibold">Payment</h1>
+                <div id="payment_text"></div>
+
+                <div class="flex space-x-1">
+                    <p class="flex-1 p-2 text-center border border-gray-300 rounded cursor-pointer bg-blue-500 text-white hover:border-gray-400 payment_tab">GCash</p>
+                    <p class="flex-1 p-2 text-center border border-gray-300 rounded cursor-pointer hover:border-gray-400 payment_tab">Paymaya</p>
+                </div>
+
+                <div class="flex items-center justify-center my-2">
+                    <div class="payment_page w-40 h-40">
+                        <img src="images/gcash.svg" class="object-cover">
+                    </div>
+                    <div class="payment_page w-40 h-40 hidden">
+                        <img src="images/paymaya.svg" class="object-cover">
+                    </div>
+                </div>
+
+                <div class="w-full flex justify-center">
+                    <input type="file" id="proof" class="hidden">
+                    <label for="proof" class="w-full p-2 text-center cursor-pointer border border-gray-300 rounded font-semibold hover:border-gray-400">Upload payment proof</label>
+                </div>
+
+                <p class="text-xs text-gray-400">Only one image is allowed. Make sure the amount and reference number are clearly visible. You may re-select the file to ensure it's the correct one.</p>
+                
+
+                <div class="w-full flex space-x-1">
+                    <button id="seventosix" class="w-24 mt-5 p-2 text-white bg-gray-500 rounded transition duration-300 hover:bg-gray-700">Go Back</button>
+                    <button id="seventoeight" class="flex-1 mt-5 p-2 text-white bg-blue-500 rounded transition duration-300 hover:bg-blue-700">Next</button>
+                </div>
+
+                <p class="w-full text-center text-sm mt-3" >7 of 8</p>
+
+
+            
+            </div>
+
+            <!-- Final -->
+            <div id="final" class="hidden">
+
+                <h1 class="font-semibold mb-5">Confirmation</h1>
+
+                <p>Click "Confirm" to finalize your rental.
+                Please make sure all information provided is accurate before proceeding.</p>
+
+                <div class="w-full flex space-x-1">
+                    <button id="eighttoseven" class="w-24 mt-5 p-2 text-white bg-gray-500 rounded transition duration-300 hover:bg-gray-700">Go Back</button>
+                    <button id="confirm_rent" class="flex-1 mt-5 p-2 text-white bg-blue-500 rounded transition duration-300 hover:bg-blue-700">Confirm</button>
+                </div>
+
+                <p class="w-full text-center text-sm mt-3" >8 of 8</p>
+            </div>
+
+            <!-- Closing -->
+            <div id="closing" class="hidden">
+
+                <div id="closing_text">
+
+                </div>
+
+                <div class="w-full flex space-x-1">
+                    <button id="closing_close" class="flex-1 mt-5 p-2 text-white bg-blue-500 rounded transition duration-300 hover:bg-blue-700">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     <!-- Footer -->
      <div class="flex items-center justify-between bg-gray-400 p-1">

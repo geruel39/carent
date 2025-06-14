@@ -9,7 +9,7 @@ $current_time = date("H:i", strtotime($current_time . " +6 hours"));
 
 if(isset($data['displayCars'])){
 
-    $getCars = $pdo->prepare("SELECT * FROM cars WHERE quantity>0");
+    $getCars = $pdo->prepare("SELECT * FROM cars");
     $getCars->execute();
     $cars = $getCars->fetchAll(PDO::FETCH_ASSOC);
 
@@ -39,78 +39,58 @@ if(isset($data['selectCar'])){
 
 if(isset($_POST['addRent'])){
 
-    $customer = $_POST['customer'];
     $car = $_POST['car'];
-    $location = $_POST['location'];
-    $start = $_POST['start'];
+    $fullname = $_POST['fullname'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $pickupdt = $_POST['pickupdt'];
     $returndt = $_POST['returndt'];
 
-    $driver = $_POST['driver'] === 'true' ? "Yes" : "No" ;
-    $gas = $_POST['gas'] === 'true' ? true : false ;
-    $box = $_POST['box'] === 'true' ? true : false ;
-    $seat = $_POST['seat'] === 'true' ? true : false ;
+    $driver = $_POST['driver'] === 'true';
+    $gas    = $_POST['gas'] === 'true';
+    $box    = $_POST['box'] === 'true';
+    $seat   = $_POST['seat'] === 'true';
 
-    $total = $_POST['total'];
+    $total  = $_POST['total'];
 
-    $extra = "";
-    if($gas && $box && $seat){
-        $extra = "extra gas - roof box - child seat";
-    }
-    else if ($gas && $box){
-        $extra = "extra gas - roof box";
-    }
-    else if ($gas && $seat){
-        $extra = "extra gas - child seat";
-    }
-    else if ($box && $seat){
-        $extra = "roof box - child seat";
-    }
-    else if ($gas){
-        $extra = "extra gas";
-    }
-    else if ($box){
-        $extra = "roof box";
-    }
-    else if ($seat){
-        $extra = "child seat";
-    }else{
-        $extra = "No extra";
+    $extras = [];
+
+    if ($gas)  $extras[] = "extra gas";
+    if ($box)  $extras[] = "roof box";
+    if ($seat) $extras[] = "child seat";
+
+    $extra = count($extras) > 0 ? implode(" - ", $extras) : "No extra";
+
+
+    $fileTmpPath = $_FILES['proof']['tmp_name'];
+    $originalName = $_FILES['proof']['name'];
+    $fileExtension = pathinfo($originalName, PATHINFO_EXTENSION);
+
+    $uniqueId = uniqid('', true);
+    $newFileName = 'proof_' . date('Ymd_His') . '_' . $uniqueId . '.' . $fileExtension;
+    $uploadFolder = 'images/proofs/';
+
+    if (!is_dir($uploadFolder)) {
+         mkdir($uploadFolder, 0777, true);
     }
 
+    $destination = $uploadFolder . $newFileName;
+    move_uploaded_file($fileTmpPath, $destination);
 
-    if ($_POST['cash'] === 'true') {
-        $payment = "Cash";
-    }else{
-        $fileTmpPath = $_FILES['proof']['tmp_name'];
-        $originalName = $_FILES['proof']['name'];
-        $fileExtension = pathinfo($originalName, PATHINFO_EXTENSION);
+    $payment = $newFileName;
 
-        $uniqueId = uniqid('', true);
-        $newFileName = 'proof_' . date('Ymd_His') . '_' . $uniqueId . '.' . $fileExtension;
-        $uploadFolder = 'images/proofs/';
-
-        if (!is_dir($uploadFolder)) {
-            mkdir($uploadFolder, 0777, true);
-        }
-
-        $destination = $uploadFolder . $newFileName;
-        move_uploaded_file($fileTmpPath, $destination);
-
-        $payment = $newFileName;
-    }
-
-    $addRent = $pdo->prepare("INSERT INTO rentals (customer, car, pdlocation, start, `return`, driver, extras, total, payment, status) 
-                            VALUES (:cu, :c, :pd, :s, :r, :d, :e, :t, :p, 'Request')");
+    $addRent = $pdo->prepare("INSERT INTO rentals (fullname, email, phone, car, pickup, `return`, extras, total, proof, status) 
+                            VALUES (:f, :e, :p, :c, :pi, :r, :ex, :t, :pr, 'Request')");
     if($addRent->execute([
-        ':cu' => $customer,
+        ':f' => $fullname,
+        ':e' => $email,
+        ':p' => $phone,
         ':c' => $car,
-        ':pd' => $location,
-        ':s' => $start,
+        ':pi' => $pickupdt,
         ':r' => $returndt,
-        ':d' => $driver,
-        ':e' => $extra,
+        ':ex' => $extra,
         ':t' => $total,
-        ':p' => $payment,
+        ':pr' => $newFileName,
     ])){
         echo json_encode(true);
     }else{

@@ -16,7 +16,6 @@ if (isset($_POST['addCar'])) {
     $doors = $_POST['doors'];
     $color = $_POST['color'];
     $price = $_POST['price'];
-    $quantity = $_POST['quantity'];
 
     
     $imageName = $_FILES['image']['name'];
@@ -27,8 +26,8 @@ if (isset($_POST['addCar'])) {
     
     if (move_uploaded_file($imageTmp, $targetPath)) {
         
-        $addCar = $pdo->prepare("INSERT INTO cars (type, brand, model, transmission, fuel, passenger, doors, color, price, quantity, image) 
-                                VALUES (:t, :b, :m, :tr, :f, :p, :d, :c, :pr, :q, :i)");
+        $addCar = $pdo->prepare("INSERT INTO cars (type, brand, model, transmission, fuel, passenger, doors, color, price, image) 
+                                VALUES (:t, :b, :m, :tr, :f, :p, :d, :c, :pr, :i)");
 
         if ($addCar->execute([
             ':t' => $type,
@@ -40,22 +39,21 @@ if (isset($_POST['addCar'])) {
             ':d' => $doors,
             ':c' => $color,
             ':pr' => $price,
-            ':q' => $quantity,
             ':i' => $imageName,
         ])) {
-            echo "Car added successfully!";
+            echo json_encode(['message' => "Car added successfully!"]);
         } else {
-            echo "Error: " . $stmt->error;
+            echo json_encode(['message' => "Error: " . $stmt->error]);
         }
 
     } else {
-        echo "Failed to upload image.";
+        echo json_encode(['message' => "Failed to upload image."]);
     }
 }
 
 if(isset($data['insertCars'])){
 
-    $insertCars = $pdo->prepare("SELECT CONCAT(brand, ' ' , model, ' (', type, ')') AS car_name, car_id FROM cars WHERE quantity>0");
+    $insertCars = $pdo->prepare("SELECT CONCAT(brand, ' ' , model, ' (', type, ')') AS car_name, car_id FROM cars");
     $insertCars->execute();
     $carsResult = $insertCars->fetchAll(PDO::FETCH_ASSOC);
 
@@ -157,8 +155,8 @@ if(isset($data['addRent'])){
 
 if(isset($data['displayRentRequest'])){
 
-    $getRequest = $pdo->prepare("SELECT rentals.*, CONCAT(cars.brand, ' ', cars.model) AS carname FROM rentals LEFT JOIN cars ON cars.car_id=rentals.car 
-                                WHERE status='Request'");
+    $getRequest = $pdo->prepare("SELECT rentals.*, cars.* FROM rentals LEFT JOIN cars ON cars.car_id=rentals.car 
+                                WHERE rentals.status='Request'");
     $getRequest->execute();
     $request = $getRequest->fetchAll(PDO::FETCH_ASSOC);
 
@@ -186,8 +184,8 @@ if(isset($data['updateRequest'])){
 
 if(isset($data['displayRentals'])){
 
-    $getRentals = $pdo->prepare("SELECT rentals.*, CONCAT(cars.brand, ' ', cars.model) AS carname FROM rentals LEFT JOIN cars ON cars.car_id=rentals.car
-                                WHERE `return`>NOW() AND status='Confirmed'");
+    $getRentals = $pdo->prepare("SELECT rentals.*, cars.* FROM rentals LEFT JOIN cars ON cars.car_id=rentals.car
+                                WHERE rentals.return>NOW() AND rentals.status='Confirmed'");
     $getRentals->execute();
     $rentals = $getRentals->fetchAll(PDO::FETCH_ASSOC);
 
